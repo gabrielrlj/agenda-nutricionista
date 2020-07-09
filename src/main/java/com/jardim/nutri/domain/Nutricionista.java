@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Nutricionista implements Serializable {
 
@@ -24,7 +26,8 @@ public class Nutricionista implements Serializable {
 	private String nome;
 	private String crn;
 	
-	@OneToMany(mappedBy = "nutricionista")
+	@JsonIgnore
+	@OneToMany(mappedBy="nutricionista")
 	private List<Paciente> pacientes = new ArrayList<>();
 
 	public Nutricionista() {

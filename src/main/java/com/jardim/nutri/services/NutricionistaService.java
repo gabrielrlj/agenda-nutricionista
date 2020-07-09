@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jardim.nutri.domain.Nutricionista;
+import com.jardim.nutri.domain.Paciente;
 import com.jardim.nutri.repositories.NutricionistaRepository;
 
 @Service
@@ -27,5 +28,9 @@ public class NutricionistaService {
 	
 	public Nutricionista save(Nutricionista obj) {
 		return repo.save(obj);
+	}
+	
+	public List<Paciente> retornaPacientesPorNutricionista(Integer id) {
+		return  this.find(id).getPacientes();
 	}
 }

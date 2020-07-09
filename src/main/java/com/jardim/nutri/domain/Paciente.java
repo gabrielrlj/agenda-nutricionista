@@ -28,7 +28,7 @@ public class Paciente implements Serializable {
 	private Sexo sexo;
 
 	@ManyToOne
-	@JoinColumn(name = "nutricionista")
+	@JoinColumn(name="nutricionista_id")
 	private Nutricionista nutricionista;
 
 	public Paciente() {
