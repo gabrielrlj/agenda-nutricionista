@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +29,7 @@ public class Nutricionista implements Serializable {
 	private String crn;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="nutricionista")
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)/*(mappedBy="nutricionista")*/
 	private List<Paciente> pacientes = new ArrayList<>();
 
 	public Nutricionista() {

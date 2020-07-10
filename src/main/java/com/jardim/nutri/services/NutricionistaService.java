@@ -33,4 +33,16 @@ public class NutricionistaService {
 	public List<Paciente> retornaPacientesPorNutricionista(Integer id) {
 		return  this.find(id).getPacientes();
 	}
+	
+	public void delete(Integer id) {
+		Nutricionista nutri = this.find(id);
+		repo.delete(nutri);
+	}
+	
+	public Nutricionista update(Integer id, Nutricionista obj) {
+		Nutricionista n1 = this.find(id);
+		n1.setNome(obj.getNome());
+		n1.setCrn(obj.getCrn());
+		return repo.save(n1);
+	}
 }
