@@ -41,4 +41,19 @@ public class PacienteService {
 		nutriService.save(nutri);
 		return newPaciente;
 	}
+	
+	public void delete(Integer id){
+		Paciente p1 = this.find(id);
+		paciRepo.delete(p1);
+	}
+	
+	public Paciente update(Integer id, Paciente obj) {
+		Paciente p = this.find(id);
+		p.setNome(obj.getNome());
+		p.setCpf(obj.getCpf());
+		p.setIdade(obj.getIdade());
+		p.setSexo(obj.getSexo());
+		//p.setNutricionista(obj.getNutricionista());
+		return paciRepo.save(p);
+	}
 }
