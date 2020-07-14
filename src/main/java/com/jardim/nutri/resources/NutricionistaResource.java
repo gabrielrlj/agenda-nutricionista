@@ -3,6 +3,8 @@ package com.jardim.nutri.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -51,7 +53,7 @@ public class NutricionistaResource {
 	
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<Void> save(@RequestBody Nutricionista obj) {
+	public ResponseEntity<Void> save(@Valid @RequestBody Nutricionista obj) {
 		obj = service.save(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -60,7 +62,7 @@ public class NutricionistaResource {
 	
 	@CrossOrigin
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody Nutricionista obj) {
+	public ResponseEntity<Void> update(@PathVariable Integer id, @Valid @RequestBody Nutricionista obj) {
 		obj.setId(id);
 		obj = service.update(id, obj);
 		return ResponseEntity.noContent().build();

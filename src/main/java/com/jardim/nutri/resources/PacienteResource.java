@@ -3,6 +3,8 @@ package com.jardim.nutri.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.jardim.nutri.domain.Nutricionista;
 import com.jardim.nutri.domain.Paciente;
 import com.jardim.nutri.services.PacienteService;
 
@@ -40,7 +41,7 @@ public class PacienteResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> save(@RequestBody Paciente obj) {
+	public ResponseEntity<Void> save(@Valid @RequestBody Paciente obj) {
 		obj = service.save(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -48,7 +49,7 @@ public class PacienteResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody Paciente obj) {
+	public ResponseEntity<Void> update(@PathVariable Integer id, @Valid @RequestBody Paciente obj) {
 		obj.setId(id);
 		obj = service.update(id, obj);
 		return ResponseEntity.noContent().build();

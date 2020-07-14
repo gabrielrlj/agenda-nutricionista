@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.jardim.nutri.domain.enums.Sexo;
 
@@ -23,14 +27,19 @@ public class Paciente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotEmpty
 	private String nome;
+	@NotEmpty
+	@CPF
 	private String cpf;
+	@NotNull
 	private Integer idade;
+	
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 
 	@ManyToOne
-	//@JoinColumn(name="nutricionista_id")
+	// @JoinColumn(name="nutricionista_id")
 	private Nutricionista nutricionista;
 
 	public Paciente() {

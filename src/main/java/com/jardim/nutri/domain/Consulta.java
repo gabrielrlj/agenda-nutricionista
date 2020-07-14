@@ -14,13 +14,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Consulta implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instante;
@@ -86,6 +83,5 @@ public class Consulta implements Serializable {
 			return false;
 		return true;
 	}
-	
 
 }
