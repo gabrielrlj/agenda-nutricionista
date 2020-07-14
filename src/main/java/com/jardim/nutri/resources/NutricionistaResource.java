@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class NutricionistaResource {
 	@Autowired
 	private NutricionistaService service;
 	
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<List<Nutricionista>> findAll(){
 		List<Nutricionista> list = service.findAll();
@@ -40,12 +42,14 @@ public class NutricionistaResource {
 		return nutri.getPacientes();
 	}*/
 	
+	@CrossOrigin
 	@GetMapping("/{id}")
 	public ResponseEntity<Nutricionista> find(@PathVariable Integer id) {
 		Nutricionista nutri = service.find(id);
 		return ResponseEntity.ok().body(nutri);
 	}
 	
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Void> save(@RequestBody Nutricionista obj) {
 		obj = service.save(obj);
@@ -54,6 +58,7 @@ public class NutricionistaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@CrossOrigin
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody Nutricionista obj) {
 		obj.setId(id);
@@ -61,6 +66,7 @@ public class NutricionistaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);

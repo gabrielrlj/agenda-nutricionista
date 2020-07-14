@@ -2,15 +2,14 @@ package com.jardim.nutri.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jardim.nutri.domain.enums.Sexo;
 
 @Entity
@@ -27,6 +26,7 @@ public class Paciente implements Serializable {
 	private String nome;
 	private String cpf;
 	private Integer idade;
+	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 
 	@ManyToOne
