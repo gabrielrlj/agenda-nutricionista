@@ -28,10 +28,10 @@ public class Nutricionista implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotEmpty
+	@NotEmpty(message = "Nome não pode ser vazio!")
 	private String nome;
 
-	@NotEmpty
+	@NotEmpty(message = "CRN não pode ser vazio!")
 	private String crn;
 
 	@JsonIgnore

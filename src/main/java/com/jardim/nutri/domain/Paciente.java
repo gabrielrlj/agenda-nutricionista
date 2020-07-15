@@ -27,12 +27,12 @@ public class Paciente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@NotEmpty
+	@NotEmpty(message = "Nome não pode ser vazio!")
 	private String nome;
-	@NotEmpty
-	@CPF
+	@NotEmpty(message = "CPF não pode ser vazio!")
+	@CPF(message = "CPF inválido!")
 	private String cpf;
-	@NotNull
+	@NotNull(message = "Idade não pode ser vazia!")
 	private Integer idade;
 	
 	@Enumerated(EnumType.STRING)
