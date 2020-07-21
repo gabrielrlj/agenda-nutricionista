@@ -45,7 +45,6 @@ public class PacienteService {
 
 		Paciente p1 = this.find(id);
 		Nutricionista n = nutriService.find(p1.getNutricionista().getId());
-		System.out.println("Paciente: " + p1.getNome() + " do nutri: " + n.getNome());
 		paciRepo.delete(p1);
 
 	}
