@@ -27,7 +27,7 @@ public class ConfiguracaoTeste implements CommandLineRunner{
 		nutriService.save(n1);
 		Paciente p1 = new Paciente(null, "Juvenal", "41167849078", 52, Sexo.MASCULINO, n1);
 		paciService.save(p1);
-		n1.getPacientes().add(p1);
+		//n1.getPacientes().add(p1);
 	}
 	
 	

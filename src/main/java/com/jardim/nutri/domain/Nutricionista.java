@@ -34,9 +34,9 @@ public class Nutricionista implements Serializable {
 	@NotEmpty(message = "CRN não pode ser vazio!")
 	private String crn;
 
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) /* (mappedBy="nutricionista") */
-	private List<Paciente> pacientes = new ArrayList<>();
+	/*@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "nutricionista", orphanRemoval = true) 
+	private List<Paciente> pacientes = new ArrayList<>();*/
 
 	public Nutricionista() {
 
@@ -73,13 +73,13 @@ public class Nutricionista implements Serializable {
 		this.crn = crn;
 	}
 
-	public List<Paciente> getPacientes() {
+	/*public List<Paciente> getPacientes() {
 		return pacientes;
 	}
 
 	public void setPacientes(List<Paciente> pacientes) {
 		this.pacientes = pacientes;
-	}
+	}*/
 
 	@Override
 	public int hashCode() {

@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -34,13 +35,14 @@ public class Paciente implements Serializable {
 	private String cpf;
 	@NotNull(message = "Idade não pode ser vazia!")
 	private Integer idade;
-	
+	@NotNull(message = "Sexo não pode ser vazio!")
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 
 	@ManyToOne
-	// @JoinColumn(name="nutricionista_id")
+	@JoinColumn(name="fk_nutricionista")
 	private Nutricionista nutricionista;
+
 
 	public Paciente() {
 

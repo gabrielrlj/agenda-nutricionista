@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.jardim.nutri.services.PacienteService;
 
 @RestController
 @RequestMapping("/pacientes")
+@CrossOrigin("*")
 public class PacienteResource {
 	
 	@Autowired
@@ -41,11 +43,12 @@ public class PacienteResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> save(@Valid @RequestBody Paciente obj) {
+	public ResponseEntity<Paciente> save(@Valid @RequestBody Paciente obj) {
 		obj = service.save(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+		ResponseEntity.created(uri).build();
+		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PutMapping("/{id}")

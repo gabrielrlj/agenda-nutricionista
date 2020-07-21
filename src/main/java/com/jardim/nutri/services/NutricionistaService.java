@@ -30,9 +30,9 @@ public class NutricionistaService {
 		return repo.save(obj);
 	}
 	
-	public List<Paciente> retornaPacientesPorNutricionista(Integer id) {
+	/*public List<Paciente> retornaPacientesPorNutricionista(Integer id) {
 		return  this.find(id).getPacientes();
-	}
+	}*/
 	
 	public void delete(Integer id) {
 		Nutricionista nutri = this.find(id);
