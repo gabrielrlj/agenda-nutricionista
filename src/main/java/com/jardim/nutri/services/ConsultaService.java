@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jardim.nutri.domain.Consulta;
+import com.jardim.nutri.domain.Paciente;
 import com.jardim.nutri.repositories.ConsultaRepository;
 
 @Service
@@ -38,5 +39,9 @@ public class ConsultaService {
 		Consulta c = this.find(id);
 		c.setInstante(obj.getInstante());
 		return repo.save(c);
+	}
+	
+	public List<Consulta> buscarPorPaciente(Paciente obj){
+		return repo.findByPaciente(obj);
 	}
 }
