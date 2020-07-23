@@ -40,8 +40,13 @@ public class ConsultaService {
 		c.setInstante(obj.getInstante());
 		return repo.save(c);
 	}
-	
-	public List<Consulta> buscarPorPaciente(Paciente obj){
-		return repo.findByPaciente(obj);
+
+	public List<Consulta> findByNomePaciente(String nome) {
+		
+		return repo.pesquisarNome(nome);
 	}
+	
+	/*public List<Consulta> buscarPorPaciente(Paciente obj){
+		return repo.findByPaciente(obj);
+	}*/
 }

@@ -33,12 +33,12 @@ public class PacienteService {
 
 		Nutricionista nutri = nutriService.find(obj.getNutricionista().getId());
 
-		Paciente newPaciente = new Paciente(null, obj.getNome(), obj.getCpf(), obj.getIdade(), obj.getSexo(), nutri);
-
-		paciRepo.save(newPaciente);
+		//Paciente newPaciente = new Paciente(null, obj.getNome(), obj.getCpf(), obj.getIdade(), obj.getSexo(), nutri);
+		obj.setNutricionista(nutri);
+		paciRepo.save(obj);
 		// nutri.getPacientes().add(newPaciente);
 		// nutriService.save(nutri);
-		return newPaciente;
+		return obj;
 	}
 
 	public void delete(Integer id) throws com.jardim.nutri.services.exceptions.ObjectNotFoundException{

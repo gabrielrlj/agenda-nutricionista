@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -21,15 +22,17 @@ public class Consulta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	@NotNull(message = "Data e hora não podem ser vazias!")
 	private Date instante;
 	@ManyToOne
+	@NotNull(message = "Paciente não pode ser vazio!")
 	private Paciente paciente;
 
 	public Consulta() {
 
 	}
 
-	public Consulta(Integer id, Date instante, Nutricionista nutricionista, Paciente paciente) {
+	public Consulta(Integer id, Date instante, Paciente paciente) {
 		super();
 		this.id = id;
 		this.instante = instante;
@@ -83,6 +86,19 @@ public class Consulta implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Consulta [id=");
+		builder.append(id);
+		builder.append(", instante=");
+		builder.append(instante);
+		builder.append(", paciente=");
+		builder.append(paciente);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

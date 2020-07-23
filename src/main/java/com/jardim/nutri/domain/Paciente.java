@@ -102,6 +102,15 @@ public class Paciente implements Serializable {
 		return sexo;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Paciente [nome=");
+		builder.append(nome);
+		builder.append("]");
+		return builder.toString();
+	}
+
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}

@@ -3,6 +3,8 @@ package com.jardim.nutri.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -41,7 +44,7 @@ public class ConsultaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> save(@RequestBody Consulta obj) {
+	public ResponseEntity<Void> save(@Valid @RequestBody Consulta obj) {
 		obj = service.save(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -65,6 +68,17 @@ public class ConsultaResource {
 	public ResponseEntity<List<Consulta>> buscarConsultasPorPaciente(){
 		
 	}*/
+	
+	@CrossOrigin
+	@GetMapping("/busca")
+	public List<Consulta> buscarPorNome( 
+			@RequestParam(value="nome", required = false, defaultValue = "") String nome){
+		
+
+		String nomePesquisa = "%"+nome+"%";
+		return service.findByNomePaciente(nomePesquisa);
+	
+	}
 	
 	
 }
