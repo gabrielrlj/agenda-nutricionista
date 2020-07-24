@@ -38,7 +38,7 @@ public class Paciente implements Serializable {
 	@NotNull(message = "Sexo não pode ser vazio!")
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
-
+	
 	@ManyToOne
 	@JoinColumn(name="fk_nutricionista")
 	private Nutricionista nutricionista;

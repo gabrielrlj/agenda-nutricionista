@@ -1,20 +1,14 @@
 package com.jardim.nutri.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Nutricionista implements Serializable {
@@ -33,20 +27,33 @@ public class Nutricionista implements Serializable {
 
 	@NotEmpty(message = "CRN não pode ser vazio!")
 	private String crn;
+	
+	@NotNull
+	@Column(unique = true)
+	private String email;
 
-	/*@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "nutricionista", orphanRemoval = true) 
-	private List<Paciente> pacientes = new ArrayList<>();*/
+	@NotNull
+	private String password;
+
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy =
+	 * "nutricionista", orphanRemoval = true) private List<Paciente> pacientes = new
+	 * ArrayList<>();
+	 */
 
 	public Nutricionista() {
 
 	}
 
-	public Nutricionista(Integer id, String nome, String crn) {
+	public Nutricionista(Integer id, String nome, String crn, String email, String password) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.crn = crn;
+		this.email = email;
+		this.password = password;
 	}
 
 	public Integer getId() {
@@ -73,13 +80,28 @@ public class Nutricionista implements Serializable {
 		this.crn = crn;
 	}
 
-	/*public List<Paciente> getPacientes() {
-		return pacientes;
+	/*
+	 * public List<Paciente> getPacientes() { return pacientes; }
+	 * 
+	 * public void setPacientes(List<Paciente> pacientes) { this.pacientes =
+	 * pacientes; }
+	 */
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPacientes(List<Paciente> pacientes) {
-		this.pacientes = pacientes;
-	}*/
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Override
 	public int hashCode() {

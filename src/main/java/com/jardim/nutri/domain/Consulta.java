@@ -24,7 +24,7 @@ public class Consulta implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@NotNull(message = "Data e hora não podem ser vazias!")
 	private Date instante;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@NotNull(message = "Paciente não pode ser vazio!")
 	private Paciente paciente;
 

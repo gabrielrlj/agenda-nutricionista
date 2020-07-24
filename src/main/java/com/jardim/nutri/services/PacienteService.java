@@ -19,6 +19,9 @@ public class PacienteService {
 
 	@Autowired
 	private NutricionistaService nutriService;
+	
+	@Autowired
+	private ConsultaService consulService;
 
 	public Paciente find(Integer id) {
 		Optional<Paciente> obj = paciRepo.findById(id);
@@ -44,7 +47,7 @@ public class PacienteService {
 	public void delete(Integer id) throws com.jardim.nutri.services.exceptions.ObjectNotFoundException{
 
 		Paciente p1 = this.find(id);
-		Nutricionista n = nutriService.find(p1.getNutricionista().getId());
+		consulService.removerConsultasDoPaciente(p1);
 		paciRepo.delete(p1);
 
 	}

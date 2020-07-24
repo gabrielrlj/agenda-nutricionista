@@ -29,7 +29,7 @@ public class ConfiguracaoTeste implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		Nutricionista n1 = new Nutricionista(null, "paulo kogos", "1234");
+		Nutricionista n1 = new Nutricionista(null, "paulo kogos", "1234", "paulinho@gmail.com", "senha1234");
 		nutriService.save(n1);
 		Paciente p1 = new Paciente(null, "Juvenal", "41167849078", 52, Sexo.MASCULINO, n1);
 		paciService.save(p1);

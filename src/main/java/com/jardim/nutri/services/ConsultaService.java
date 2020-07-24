@@ -31,8 +31,8 @@ public class ConsultaService {
 	}
 	
 	public void delete(Integer id) {
-		Consulta nutri = this.find(id);
-		repo.delete(nutri);
+		Consulta c = this.find(id);
+		repo.delete(c);
 	}
 	
 	public Consulta update(Integer id, Consulta obj) {
@@ -44,6 +44,11 @@ public class ConsultaService {
 	public List<Consulta> findByNomePaciente(String nome) {
 		
 		return repo.pesquisarNome(nome);
+	}
+	
+	public void removerConsultasDoPaciente(Paciente obj){
+		List<Consulta> consultas = repo.findAllByPaciente(obj);
+		consultas.forEach(consulta -> this.delete(consulta.getId()));
 	}
 	
 	/*public List<Consulta> buscarPorPaciente(Paciente obj){
