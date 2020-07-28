@@ -28,11 +28,11 @@ public class Nutricionista implements Serializable {
 	@NotEmpty(message = "CRN não pode ser vazio!")
 	private String crn;
 	
-	@NotNull
+	@NotEmpty(message = "Email não pode ser vazio!")
 	@Column(unique = true)
 	private String email;
 
-	@NotNull
+	@NotNull(message = "Senha não pode ser vazia!")
 	private String password;
 
 	/*

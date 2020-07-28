@@ -5,14 +5,19 @@ import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.jardim.nutri.domain.Nutricionista;
 import com.jardim.nutri.domain.Paciente;
 import com.jardim.nutri.repositories.NutricionistaRepository;
+import com.jardim.nutri.services.exceptions.UsuarioCadastradoException;
 
 @Service
-public class NutricionistaService {
+public class NutricionistaService implements UserDetailsService{
 	
 	@Autowired
 	private NutricionistaRepository repo;
@@ -27,6 +32,10 @@ public class NutricionistaService {
 	}
 	
 	public Nutricionista save(Nutricionista obj) {
+		boolean exists = repo.existsByEmail(obj.getEmail());
+		if(exists) {
+			throw new UsuarioCadastradoException();
+		}
 		return repo.save(obj);
 	}
 	
@@ -44,5 +53,17 @@ public class NutricionistaService {
 		n1.setNome(obj.getNome());
 		n1.setCrn(obj.getCrn());
 		return repo.save(n1);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Nutricionista nutri = repo.findByEmail(email)
+				.orElseThrow(() -> new UsernameNotFoundException("Email não encontrado!"));
+		return User
+				.builder()
+				.username(nutri.getEmail())
+				.password(nutri.getPassword())
+				.roles("USER")
+				.build();
 	}
 }
