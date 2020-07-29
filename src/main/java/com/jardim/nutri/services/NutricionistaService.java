@@ -66,4 +66,10 @@ public class NutricionistaService implements UserDetailsService{
 				.roles("USER")
 				.build();
 	}
+	
+	public Nutricionista findByEmail(String email) {
+		Nutricionista n = repo.findByEmail(email)
+				.orElseThrow(() -> new UsernameNotFoundException("Email não encontrado!"));
+		return n;
+	}
 }

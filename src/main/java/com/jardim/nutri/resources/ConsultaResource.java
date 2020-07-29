@@ -64,10 +64,10 @@ public class ConsultaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	/*@GetMapping
-	public ResponseEntity<List<Consulta>> buscarConsultasPorPaciente(){
-		
-	}*/
+	@GetMapping("/nutri/{id}")
+	public List<Consulta> buscarConsultasPorNutricionista(@PathVariable Integer id){
+		return service.buscarConsultasPorNutricionista(id);
+	}
 	
 	@CrossOrigin
 	@GetMapping("/busca")

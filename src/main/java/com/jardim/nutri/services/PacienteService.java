@@ -61,4 +61,10 @@ public class PacienteService {
 		// p.setNutricionista(obj.getNutricionista());
 		return paciRepo.save(p);
 	}
+	
+	public List<Paciente> listarPacientesPorNutri(Integer id){
+		Nutricionista n = this.nutriService.find(id);
+
+		return paciRepo.findByNutricionista(n);
+	}
 }

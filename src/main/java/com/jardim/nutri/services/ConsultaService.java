@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jardim.nutri.domain.Consulta;
+import com.jardim.nutri.domain.Nutricionista;
 import com.jardim.nutri.domain.Paciente;
 import com.jardim.nutri.repositories.ConsultaRepository;
 
@@ -16,6 +17,9 @@ public class ConsultaService {
 	
 	@Autowired
 	private ConsultaRepository repo;
+	
+	@Autowired
+	private NutricionistaService nutriService;
 	
 	public Consulta find(Integer id) {
 		Optional<Consulta> obj = repo.findById(id);
@@ -51,7 +55,8 @@ public class ConsultaService {
 		consultas.forEach(consulta -> this.delete(consulta.getId()));
 	}
 	
-	/*public List<Consulta> buscarPorPaciente(Paciente obj){
-		return repo.findByPaciente(obj);
-	}*/
+	public List<Consulta> buscarConsultasPorNutricionista(Integer id) {
+		Nutricionista n =  this.nutriService.find(id);
+		return repo.findAllByNutricionista(n);
+	}
 }

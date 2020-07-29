@@ -84,5 +84,12 @@ public class NutricionistaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@GetMapping("/email/{email}")
+	public Nutricionista encontraIdPorEmail(@PathVariable String email) {
+		return service.findByEmail(email);
+	}
+	
+	
+	
 	
 }

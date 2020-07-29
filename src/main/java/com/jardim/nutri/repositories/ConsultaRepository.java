@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
+import com.jardim.nutri.domain.Nutricionista;
 import com.jardim.nutri.domain.Consulta;
 import com.jardim.nutri.domain.Paciente;
 
@@ -18,5 +18,6 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Integer>{
 	
 	List<Consulta> findAllByPaciente(Paciente p);
 	
-	//List<Consulta> findByPaciente(Paciente p);	
+	@Query(" select c from Consulta c join c.paciente p where p.nutricionista = :n ")
+	List<Consulta>findAllByNutricionista(@Param("n")Nutricionista n);
 }

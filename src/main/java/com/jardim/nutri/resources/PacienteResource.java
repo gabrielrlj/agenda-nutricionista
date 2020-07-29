@@ -36,6 +36,12 @@ public class PacienteResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@GetMapping("/nutri/{id}")
+	public List<Paciente> findAllByNutricionista(@PathVariable Integer id){
+		List<Paciente> list = service.listarPacientesPorNutri(id);
+		return list;
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Paciente> find(@PathVariable Integer id) {
 		Paciente paci = service.find(id);
