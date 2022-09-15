@@ -32,9 +32,7 @@ public class ConsultaResource {
 	
 	@GetMapping
 	public ResponseEntity<List<Consulta>> findAll(){
-		List<Consulta> list = service.findAll();
-		
-		return ResponseEntity.ok().body(list);
+		return ResponseEntity.ok().body(service.findAll());
 	}
 	
 	@GetMapping("/{id}")
